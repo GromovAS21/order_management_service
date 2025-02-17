@@ -12,7 +12,7 @@ class CHOICES_STATUS_ORDER(models.TextChoices):
 
 
 class CHOICES_QUANTITY_SEAT(models.TextChoices):
-    """Статусы Заказа"""
+    """Количество мест за столом"""
 
     ONE = "one", "1 персона"
     TWO = "two", "2 персоны"

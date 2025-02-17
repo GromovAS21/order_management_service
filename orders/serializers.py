@@ -25,7 +25,7 @@ class OrderCreateSerializers(serializers.ModelSerializer):
         read_only_fields = ("total_price",)
 
 
-class OrderSerializers(serializers.ModelSerializer):
+class OrderDetailSerializers(serializers.ModelSerializer):
     """Сериализатор для просмотра Заказа"""
 
     table_number = TableSerializer()
@@ -34,3 +34,11 @@ class OrderSerializers(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = ("id", "table_number", "items", "total_price", "status", "datetime")
+
+
+class OrderUpdateStatusSerializers(serializers.ModelSerializer):
+    """Сериализатор для изменения статуса Заказа"""
+
+    class Meta:
+        model = Order
+        fields = ("id", "status")
