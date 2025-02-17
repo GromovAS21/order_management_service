@@ -29,9 +29,7 @@ class Order(models.Model):
     )
     items = models.ManyToManyField(Dish, verbose_name="Блюда", blank=True)
     total_price = models.DecimalField(
-        max_digits=10,
-        decimal_places=2,
-        verbose_name="Общая стоимость заказа",
+        max_digits=10, decimal_places=2, verbose_name="Общая стоимость заказа", help_text="Цена указывается в рублях"
     )
     status = models.CharField(
         max_length=20,
