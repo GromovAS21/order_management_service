@@ -31,7 +31,7 @@ class Order(models.Model):
     )
 
     def __str__(self):
-        return f"Заказ No{self.id}"
+        return f"Заказ No {self.id}"
 
     class Meta:
         verbose_name = "Заказ"
