@@ -6,9 +6,19 @@ from dishes.models import Dish
 class CHOICES_STATUS_ORDER(models.TextChoices):
     """Статусы Заказа"""
 
-    ANTICIPATION = "Anticipation", "В ожидании"
-    READY = "Ready", "Готово"
-    PAID = "Paid", "Оплачено"
+    ANTICIPATION = "anticipation", "В ожидании"
+    READY = "ready", "Готово"
+    PAID = "paid", "Оплачено"
+
+
+class CHOICES_QUANTITY_SEAT(models.TextChoices):
+    """Статусы Заказа"""
+
+    ONE = "one", "1 персона"
+    TWO = "two", "2 персоны"
+    THREE = "three", "3 персоны"
+    FOUR = "four", "4 персоны"
+    FIVE = "five", "5 персон"
 
 
 class Order(models.Model):
@@ -24,7 +34,10 @@ class Order(models.Model):
         verbose_name="Общая стоимость заказа",
     )
     status = models.CharField(
-        max_length=20, choices=CHOICES_STATUS_ORDER, default="Anticipation", verbose_name="Статус заказа"
+        max_length=20,
+        choices=CHOICES_STATUS_ORDER,
+        default=CHOICES_STATUS_ORDER.ANTICIPATION,
+        verbose_name="Статус заказа",
     )
 
     datetime = models.DateTimeField(
@@ -38,4 +51,24 @@ class Order(models.Model):
     class Meta:
         verbose_name = "Заказ"
         verbose_name_plural = "Заказы"
+        ordering = ("-id",)
+
+
+class Table(models.Model):
+    """Модель столов"""
+
+    number = models.PositiveSmallIntegerField(verbose_name="Номер стола")
+    quantity_seat = models.CharField(
+        max_length=20,
+        choices=CHOICES_QUANTITY_SEAT,
+        default=CHOICES_QUANTITY_SEAT.ONE,
+        verbose_name="Количество мест за столом",
+    )
+
+    def __str__(self):
+        return f"Стол No {self.number}"
+
+    class Meta:
+        verbose_name = "Стол"
+        verbose_name_plural = "Столы"
         ordering = ("-id",)
