@@ -1,5 +1,7 @@
 from django.db import models
 
+from dishes.models import Dish
+
 
 class CHOICES_STATUS_ORDER(models.TextChoices):
     """Статусы Заказа"""
@@ -15,7 +17,7 @@ class Order(models.Model):
     table_number = models.PositiveSmallIntegerField(
         verbose_name="Номер стола",
     )
-    items = models.ManyToManyField("Dish", verbose_name="Блюда", blank=True)
+    items = models.ManyToManyField(Dish, verbose_name="Блюда", blank=True)
     total_price = models.DecimalField(
         max_digits=10,
         decimal_places=2,
