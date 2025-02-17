@@ -57,7 +57,7 @@ class Order(models.Model):
 class Table(models.Model):
     """Модель столов"""
 
-    number = models.PositiveSmallIntegerField(verbose_name="Номер стола")
+    number = models.PositiveSmallIntegerField(unique=True, verbose_name="Номер стола")
     quantity_seat = models.CharField(
         max_length=20,
         choices=CHOICES_QUANTITY_SEAT,
