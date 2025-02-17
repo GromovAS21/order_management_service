@@ -1,3 +1,5 @@
+import decimal
+
 from django.core.validators import MinValueValidator
 from django.db import models
 
@@ -11,7 +13,7 @@ class Dish(models.Model):
         decimal_places=2,
         verbose_name="Цена",
         help_text="Цена указывается в рублях",
-        validators=[MinValueValidator(0)],
+        validators=[MinValueValidator(decimal.Decimal("0.00"))],
     )
     description = models.TextField(verbose_name="Описание блюда", blank=True, null=True)
 
