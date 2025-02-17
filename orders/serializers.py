@@ -22,7 +22,7 @@ class OrderCreateSerializers(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = ("id", "table_number", "items", "total_price", "status", "datetime")
-        read_only_fields = ("total_price",)
+        read_only_fields = ("total_price", "datetime", "status")
 
 
 class OrderDetailSerializers(serializers.ModelSerializer):
@@ -41,4 +41,5 @@ class OrderUpdateStatusSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ("id", "status")
+        fields = ("id", "table_number", "items", "total_price", "status", "datetime")
+        read_only_fields = ("table_number", "items", "total_price", "datetime")
