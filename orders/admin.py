@@ -1,0 +1,13 @@
+from django.contrib import admin
+
+from orders.models import Order
+
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    """Админка для Заказа"""
+
+    list_display = ("id", "datetime", "table_number", "total_price", "status")
+    list_filter = ("status",)
+    search_fields = ("id",)
+    readonly_fields = ("datetime",)
