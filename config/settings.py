@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     "orders",
     "dishes",
     "django_filters",
+    "drf_yasg",
 ]
 
 MIDDLEWARE = [
