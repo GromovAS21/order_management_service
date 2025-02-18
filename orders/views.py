@@ -5,6 +5,7 @@ from drf_yasg.utils import swagger_auto_schema
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.serializers import Serializer
+from rest_framework.views import APIView
 
 from orders.filters import OrderFilter
 from orders.models import Order
@@ -160,3 +161,14 @@ class OrderDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     )
     def delete(self, request, *args, **kwargs):
         return super().delete(request, *args, **kwargs)
+
+
+class CalculationRevenueAPIView(APIView):
+    """Представление для расчета выручки за смену"""
+
+    def get(self, request, *args, **kwargs):
+        total_revenue = OrderService.calculate_revenue()
+
+        if total_revenue:
+            return Response({"total_revenue": total_revenue})
+        return Response({"total_revenue": 0})
