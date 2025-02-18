@@ -7,15 +7,15 @@
 
         <div class="row">
             <p>
-                <a class="btn btn-lg btn-block btn-outline-success"
-                   href="{% url 'orders:orders_create_html' %}"
-                   role="button">Создать заказ</a>
+                <a class="btn btn-lg btn-block btn-outline-primary"
+                   href="{% url 'orders:orders_list_html' %}"
+                   role="button">К списку всех заказов</a>
             </p>
         </div>
-        {% if not object_list %}
+        {% if not orders_results %}
         <div class="col-12">
             <h1 class="text-body-secondary">
-                Заказов пока что нет
+                Заказы не найдены
             </h1>
         </div>
         {% else %}
@@ -34,9 +34,9 @@
             </tr>
             </thead>
             <tbody>
-            {% for order in object_list %}
+            {% for order in orders_results %}
             <tr>
-                <th style="vertical-align: middle" scope="row">{{ number | get_number}}</th>
+                <th scope="row">{{ number | get_number}}</th>
                 <td style="vertical-align: middle"><a class="btn btn-lg btn-block btn-outline-primary"
                                                       href="{% url 'orders:orders_detail_html' order.pk%}">
                     {{ order }}</a></td>

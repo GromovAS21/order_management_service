@@ -1,4 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
@@ -56,3 +58,22 @@ class OrderDeleteView(LoginRequiredMixin, DeleteView):
 
     model = Order
     success_url = reverse_lazy("orders:orders_list_html")
+
+
+def calculation_revenue_view(request):
+    """Контроллер для расчета выручки за смену"""
+
+    total_revenue = OrderService.calculate_revenue()
+    return render(request, "orders/calculation_revenue.html", {"total_revenue": total_revenue})
+
+
+def search_view(request):
+    """Контроллер для поиска заказов"""
+
+    query = request.GET.get("query", "")
+    orders_results = Order.objects.filter(Q(status__icontains=query) | Q(table_number__number__icontains=query))
+    context = {
+        "number": [number for number in range(1, len(orders_results) + 1)],
+        "orders_results": orders_results,
+    }
+    return render(request, "orders/search_results.html", context)

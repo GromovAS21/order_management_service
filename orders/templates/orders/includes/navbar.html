@@ -7,7 +7,10 @@
     </div>
     <div class="col-3">
         {% if user.is_authenticated %}
-        Вы вошли как: {{ user }}
+        <form role="search" action="{% url 'orders:orders_search_html' %}" method="get" class="d-flex">
+            <input type="search" name="query" placeholder="Поиск" aria-label="Search" class="form-control">
+            <button class="btn btn-outline-success ms-2" type="submit">Поиск</button>
+        </form>
         {% endif %}
     </div>
     <div class="col-6">
@@ -21,6 +24,7 @@
             <a class="p-2 btn btn-outline-dark" href="{% url 'orders:orders_list_html' %}">Список заказов</a>
             <a class="p-2 btn btn-outline-dark" href="">Список блюд</a>
             <a class="p-2 btn btn-outline-dark" href="">Список столов</a>
+            <a class="p-2 btn btn-outline-warning" href="{% url 'orders:orders_revenue_html' %}">Расчет выручки</a>
             <a class="p-2 btn btn-danger" style="float: right;" href="">Выход</a>
             {% endif %}
         </nav>

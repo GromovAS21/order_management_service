@@ -1,6 +1,6 @@
 import datetime
 
-from orders.models import Order
+from orders.models import CHOICES_STATUS_ORDER, Order
 
 
 class OrderService:
@@ -25,7 +25,7 @@ class OrderService:
         :return: Общая выручка за смену
         """
         today = datetime.date.today()
-        orders_paid = Order.objects.filter(status="paid", datetime__date=today)
+        orders_paid = Order.objects.filter(status=CHOICES_STATUS_ORDER.PAID, datetime__date=today)
 
         if orders_paid:
             total_revenue = sum(order.total_price for order in orders_paid)
