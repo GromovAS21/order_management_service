@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, ListView, UpdateView
+from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
 from orders.forms import OrderCreateForm, OrderUpdateForm
 from orders.models import Order
@@ -49,3 +49,10 @@ class OrderUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy("orders:orders_detail_html", args=(self.object.pk,))
+
+
+class OrderDeleteView(LoginRequiredMixin, DeleteView):
+    """Контроллер для удаления заказа"""
+
+    model = Order
+    success_url = reverse_lazy("orders:orders_list_html")

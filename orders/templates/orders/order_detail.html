@@ -28,7 +28,7 @@
                     </p>
                     <a class="btn btn-primary" href="{% url 'orders:orders_update_html' order.pk %}" role="button">Изменить
                         статус заказа</a>
-                    <a class="btn btn-danger" href="" role="button">Удалить заказ</a>
+                    <a class="btn btn-danger" href="{% url 'orders:orders_delete_html' order.pk %}" role="button">Удалить заказ</a>
                     <br>
                     <br>
                     <a class="btn btn-outline-primary" href="{% url 'orders:orders_list_html' %}"
