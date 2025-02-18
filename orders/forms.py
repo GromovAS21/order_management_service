@@ -20,13 +20,3 @@ class OrderForm(StyleFormMixin, ModelForm):
     class Meta:
         model = Order
         fields = ("table_number", "items")
-
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #     self.serializer = OrderCreateSerializer(data=self.data)
-    #
-    # def is_valid(self):
-    #     return self.serializer.is_valid()
-    #
-    # def save(self, commit=True):
-    #     return self.serializer.save()

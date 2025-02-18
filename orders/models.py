@@ -33,7 +33,7 @@ class Table(models.Model):
     )
 
     def __str__(self):
-        return f"Стол No {self.number}"
+        return f"{self.number}"
 
     class Meta:
         verbose_name = "Стол"

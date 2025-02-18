@@ -7,7 +7,7 @@
 
         <div class="row">
             <p>
-                <a class="btn btn-lg btn-block btn-outline-primary"
+                <a class="btn btn-lg btn-block btn-outline-success"
                    href="{% url 'orders:orders_create_html' %}"
                    role="button">Создать заказ</a>
             </p>
@@ -37,10 +37,12 @@
             {% for order in object_list %}
             <tr>
                 <th scope="row">{{ number | get_number}}</th>
-                <td style="vertical-align: middle">{{ order }}</td>
+                <td style="vertical-align: middle"><a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'orders:orders_detail_html' order.pk%}">
+                    {{ order }}</a></td>
                 <td style="vertical-align: middle">{{ order.datetime }}</td>
                 <td style="vertical-align: middle">{{ order.table_number }}</td>
-                <td style="vertical-align: middle">{% for item in order.items.all %}
+                <td style="vertical-align: middle">
+                    {% for item in order.items.all %}
                     {{ item }} - {{item.price}} руб.
                     <br>
                     {% endfor %}
