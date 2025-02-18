@@ -10,3 +10,8 @@ class OrderListView(ListView):
 
     model = Order
     queryset = Order.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["number"] = [number for number in range(1, len(context["object_list"]) + 1)]
+        return context
