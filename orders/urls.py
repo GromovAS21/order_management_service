@@ -1,7 +1,7 @@
 from django.urls import path
 
 from orders.apps import OrdersConfig
-from orders.view_html import OrderListView
+from orders.view_html import OrderCreateView, OrderListView
 from orders.views_api import CalculationRevenueAPIView, OrderAPIView, OrderDetailAPIView
 
 
@@ -14,4 +14,5 @@ urlpatterns = [
     path("api/orders/total_revenue/", CalculationRevenueAPIView.as_view(), name="total_revenue"),
     # HTML
     path("orders/", OrderListView.as_view(), name="orders_list_html"),
+    path("orders/create/", OrderCreateView.as_view(), name="orders_create_html"),
 ]

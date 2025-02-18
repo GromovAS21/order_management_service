@@ -12,7 +12,7 @@ class TableSerializer(serializers.ModelSerializer):
         fields = ("id", "number", "quantity_seat")
 
 
-class OrderCreateSerializers(serializers.ModelSerializer):
+class OrderCreateSerializer(serializers.ModelSerializer):
     """Сериализатор для создания Заказа"""
 
     def __init__(self, *args, **kwargs):
@@ -25,7 +25,7 @@ class OrderCreateSerializers(serializers.ModelSerializer):
         read_only_fields = ("total_price", "datetime", "status")
 
 
-class OrderDetailSerializers(serializers.ModelSerializer):
+class OrderDetailSerializer(serializers.ModelSerializer):
     """Сериализатор для просмотра Заказа"""
 
     table_number = TableSerializer()
@@ -36,7 +36,7 @@ class OrderDetailSerializers(serializers.ModelSerializer):
         fields = ("id", "table_number", "items", "total_price", "status", "datetime")
 
 
-class OrderUpdateStatusSerializers(serializers.ModelSerializer):
+class OrderUpdateStatusSerializer(serializers.ModelSerializer):
     """Сериализатор для изменения статуса Заказа"""
 
     class Meta:

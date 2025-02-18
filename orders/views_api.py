@@ -9,7 +9,7 @@ from rest_framework.views import APIView
 
 from orders.filters import OrderFilter
 from orders.models import Order
-from orders.serializers import OrderCreateSerializers, OrderDetailSerializers, OrderUpdateStatusSerializers
+from orders.serializers import OrderCreateSerializer, OrderDetailSerializer, OrderUpdateStatusSerializer
 from orders.services import OrderService
 
 
@@ -33,12 +33,12 @@ class OrderAPIView(generics.ListCreateAPIView):
     @swagger_auto_schema(
         operation_description="Создание нового заказа",
         operation_summary="Добавление Заказа",
-        request_body=OrderCreateSerializers,
+        request_body=OrderCreateSerializer,
         tags=["Заказ"],
         responses={
             201: openapi.Response(
                 description="Заказ успешно создан",
-                schema=OrderCreateSerializers(),
+                schema=OrderCreateSerializer(),
             ),
             400: "Ошибка валидации",
         },
@@ -68,7 +68,7 @@ class OrderAPIView(generics.ListCreateAPIView):
         responses={
             200: openapi.Response(
                 description="Успешый вывод списка заказов",
-                schema=OrderDetailSerializers(),
+                schema=OrderDetailSerializer(),
             ),
             400: "Ошибка валидации",
         },
@@ -83,8 +83,8 @@ class OrderAPIView(generics.ListCreateAPIView):
 
     def get_serializer_class(self) -> Type[Serializer]:
         if self.request.method == "POST":
-            return OrderCreateSerializers
-        return OrderDetailSerializers
+            return OrderCreateSerializer
+        return OrderDetailSerializer
 
 
 class OrderDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
@@ -94,8 +94,8 @@ class OrderDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_serializer_class(self) -> Type[Serializer]:
         if self.request.method == "PUT" or self.request.method == "PATCH":
-            return OrderUpdateStatusSerializers
-        return OrderDetailSerializers
+            return OrderUpdateStatusSerializer
+        return OrderDetailSerializer
 
     @swagger_auto_schema(
         operation_description="Получение информации о заказе через идентификатор",
@@ -105,7 +105,7 @@ class OrderDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
         responses={
             200: openapi.Response(
                 description="Успешный вывод информации о заказе",
-                schema=OrderDetailSerializers(),
+                schema=OrderDetailSerializer(),
             ),
             400: "Ошибка валидации",
         },
@@ -117,12 +117,12 @@ class OrderDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
         operation_description="Частичное изменение информации о заказе",
         operation_summary="Частичное изменение заказа",
         tags=["Заказ"],
-        request_body=OrderUpdateStatusSerializers,
+        request_body=OrderUpdateStatusSerializer,
         manual_parameters=manual_parameters,
         responses={
             200: openapi.Response(
                 description="Успешное частичное изменение информации о заказе",
-                schema=OrderUpdateStatusSerializers(),
+                schema=OrderUpdateStatusSerializer(),
             ),
             400: "Ошибка валидации",
         },
@@ -134,12 +134,12 @@ class OrderDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
         operation_description="Полное изменение информации о заказе",
         operation_summary="Полное изменение заявки",
         tags=["Заказ"],
-        request_body=OrderUpdateStatusSerializers,
+        request_body=OrderUpdateStatusSerializer,
         manual_parameters=manual_parameters,
         responses={
             200: openapi.Response(
                 description="Успешный полное изменение информации о заказе",
-                schema=OrderUpdateStatusSerializers(),
+                schema=OrderUpdateStatusSerializer(),
             ),
             400: "Ошибка валидации",
         },
