@@ -6,9 +6,9 @@ from dishes.models import Dish
 class CHOICES_STATUS_ORDER(models.TextChoices):
     """Статусы Заказа"""
 
-    ANTICIPATION = "anticipation", "В ожидании"
-    READY = "ready", "Готово"
-    PAID = "paid", "Оплачено"
+    ANTICIPATION = "В ожидании", "В ожидании"
+    READY = "Готово", "Готово"
+    PAID = "Оплачено", "Оплачено"
 
 
 class CHOICES_QUANTITY_SEAT(models.TextChoices):
