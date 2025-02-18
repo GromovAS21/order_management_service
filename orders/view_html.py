@@ -1,8 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, ListView
+from django.views.generic import CreateView, DetailView, ListView, UpdateView
 
-from orders.forms import OrderForm
+from orders.forms import OrderCreateForm, OrderUpdateForm
 from orders.models import Order
 from orders.services import OrderService
 
@@ -25,7 +25,7 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
     """Контроллер для создания заказа"""
 
     model = Order
-    form_class = OrderForm
+    form_class = OrderCreateForm
     success_url = reverse_lazy("orders:orders_list_html")
 
     def form_valid(self, form) -> None:
@@ -39,3 +39,13 @@ class OrderDetailView(LoginRequiredMixin, DetailView):
     """Контроллер для просмотра конкретного заказа"""
 
     model = Order
+
+
+class OrderUpdateView(LoginRequiredMixin, UpdateView):
+    """Контроллер для редактирования заказа"""
+
+    model = Order
+    form_class = OrderUpdateForm
+
+    def get_success_url(self):
+        return reverse_lazy("orders:orders_detail_html", args=(self.object.pk,))

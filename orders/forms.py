@@ -14,9 +14,17 @@ class StyleFormMixin:
             field.widget.attrs["class"] = "form-control"
 
 
-class OrderForm(StyleFormMixin, ModelForm):
+class OrderCreateForm(StyleFormMixin, ModelForm):
     """Форма для создания заказа"""
 
     class Meta:
         model = Order
         fields = ("table_number", "items")
+
+
+class OrderUpdateForm(StyleFormMixin, ModelForm):
+    """Форма для изменения заказа"""
+
+    class Meta:
+        model = Order
+        fields = ("status",)

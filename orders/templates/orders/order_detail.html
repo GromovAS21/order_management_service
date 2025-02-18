@@ -10,13 +10,15 @@
         <div class="col-6">
             <div class="card mb-4 box-shadow">
                 <div class="card-header">
-                    <h2 class="my-0 font-weight-normal">{{ order.datetime }}</h2>
+                    <h2 class="my-0 font-weight-normal">{{ order.status }}</h2>
                 </div>
                 <div class="card-body">
                     <p>
-                        <h5>Номер стола</h5>
-                        {{ order.table_number }}
-                    </p>
+                    <h5>Дата заказа</h5>
+                    {{ order.datetime }}
+                    <p>
+                    <h5>Номер стола</h5>
+                    {{ order.table_number }}
                     <p>
                     <h5>Блюда</h5>
                     {% for item in order.items.all %}
@@ -24,7 +26,8 @@
                     <br>
                     {% endfor %}
                     </p>
-                    <a class="btn btn-primary" href="" role="button">Изменить статус заказа</a>
+                    <a class="btn btn-primary" href="{% url 'orders:orders_update_html' order.pk %}" role="button">Изменить
+                        статус заказа</a>
                     <a class="btn btn-danger" href="" role="button">Удалить заказ</a>
                     <br>
                     <br>

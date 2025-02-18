@@ -37,7 +37,8 @@
             {% for order in object_list %}
             <tr>
                 <th scope="row">{{ number | get_number}}</th>
-                <td style="vertical-align: middle"><a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'orders:orders_detail_html' order.pk%}">
+                <td style="vertical-align: middle"><a class="btn btn-lg btn-block btn-outline-primary"
+                                                      href="{% url 'orders:orders_detail_html' order.pk%}">
                     {{ order }}</a></td>
                 <td style="vertical-align: middle">{{ order.datetime }}</td>
                 <td style="vertical-align: middle">{{ order.table_number }}</td>

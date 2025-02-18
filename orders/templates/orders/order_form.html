@@ -27,7 +27,7 @@
                             {% endif %}
                         </button>
                         {% if object %}
-                        <a class="btn btn-outline-primary" href=""
+                        <a class="btn btn-outline-primary" href="{% url 'orders:orders_detail_html' order.pk %}"
                            role="button">Отмена</a>
                         {% else %}
                         <a class="btn btn-outline-primary" href="{% url 'orders:orders_list_html' %}"
