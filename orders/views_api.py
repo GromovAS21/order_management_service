@@ -20,6 +20,7 @@ from orders.services import OrderService
 
 
 def manual_parameters_id(item: str) -> list[openapi.Parameter]:
+    """Список параметров для id"""
     return [
         openapi.Parameter(
             name="id",
@@ -32,6 +33,7 @@ def manual_parameters_id(item: str) -> list[openapi.Parameter]:
 
 
 def manual_parameters_query(item: str) -> list[openapi.Parameter]:
+    """Список параметров для query"""
     return [
         openapi.Parameter(
             name="limit",
