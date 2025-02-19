@@ -1,3 +1,6 @@
+import datetime
+
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.shortcuts import render
@@ -48,9 +51,7 @@ class OrderUpdateView(LoginRequiredMixin, UpdateView):
 
     model = Order
     form_class = OrderUpdateForm
-
-    def get_success_url(self):
-        return reverse_lazy("orders:orders_detail_html", args=(self.object.pk,))
+    success_url = reverse_lazy("orders:orders_list_html")
 
 
 class OrderDeleteView(LoginRequiredMixin, DeleteView):
@@ -60,13 +61,16 @@ class OrderDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("orders:orders_list_html")
 
 
+@login_required
 def calculation_revenue_view(request):
     """Контроллер для расчета выручки за смену"""
 
     total_revenue = OrderService.calculate_revenue()
-    return render(request, "orders/calculation_revenue.html", {"total_revenue": total_revenue})
+    today = datetime.date.today()
+    return render(request, "orders/calculation_revenue.html", {"total_revenue": total_revenue, "today": today})
 
 
+@login_required
 def search_view(request):
     """Контроллер для поиска заказов"""
 
