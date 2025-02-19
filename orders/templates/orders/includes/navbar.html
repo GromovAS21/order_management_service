@@ -1,0 +1,39 @@
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+    {% if user.is_authenticated %}
+    <div class="col-3" style="text-align: center;">
+        <a class="navbar-brand " href="/">
+            <h5>Система управления заказами</h5>
+        </a>
+        {% else %}
+        <div class="col-12" style="text-align: center;">
+            <a class="navbar-brand " href="{% url 'orders:orders_list_html' %}">
+                <h3>Система управления заказами</h3>
+            </a>
+            {% endif %}
+
+
+        </div>
+        <div class="col-3">
+            {% if user.is_authenticated %}
+            <form role="search" action="{% url 'orders:orders_search_html' %}" method="get" class="d-flex">
+                <input type="search" name="query" placeholder="Поиск" aria-label="Search" class="form-control">
+                <button class="p-2 btn btn-outline-success ms-2" type="submit">Поиск</button>
+            </form>
+
+        </div>
+        <div class="col-6">
+            <nav class="ms-5" style="text-align: right">
+                <a class="p-2 btn btn-outline-dark" href="{% url 'orders:orders_list_html' %}">Заказы</a>
+                <a class="p-2 btn btn-outline-dark" href="{% url 'dishes:dish_list_html' %}">Блюда</a>
+                <a class="p-2 btn btn-outline-dark" href="{% url 'orders:table_list_html' %}">Столы</a>
+                <a class="p-2 btn btn-outline-warning" href="{% url 'orders:orders_revenue_html' %}">Расчет выручки</a>
+                <form action="{% url 'orders:logout' %}" method="post" style="display: inline-block;">
+                    {% csrf_token %}
+                    <button class="p-2 btn btn-danger" type="submit">Выход</button>
+                </form>
+            </nav>
+            {% endif %}
+        </div>
+
+
+    </div>

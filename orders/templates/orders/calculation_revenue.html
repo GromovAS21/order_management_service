@@ -1,0 +1,19 @@
+{% extends 'orders/base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row text-center">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h3 class="my-0 font-weight-normal">
+                        Выручка за {{ today }}: </h3>
+                    <br>
+                        <h1>{{ total_revenue }} руб.</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% endblock %}
