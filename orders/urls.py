@@ -15,6 +15,7 @@ from orders.view_html import (
     TableListView,
     TableUpdateView,
     calculation_revenue_view,
+    home_view,
     search_view,
 )
 from orders.views_api import CalculationRevenueAPIView, OrderAPIView, OrderDetailAPIView, TableViewSetAPIView
@@ -47,4 +48,6 @@ urlpatterns = [
     path("table/<int:pk>/", TableDetailView.as_view(), name="table_detail_html"),
     path("table/update/<int:pk>/", TableUpdateView.as_view(), name="table_update_html"),
     path("table/delete/<int:pk>/", TableDeleteView.as_view(), name="table_delete_html"),
+    # Домашняя страница
+    path("", home_view, name="home"),
 ] + router.urls

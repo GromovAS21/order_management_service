@@ -127,3 +127,9 @@ class TableDeleteView(LoginRequiredMixin, DeleteView):
 
     model = Table
     success_url = reverse_lazy("orders:table_list_html")
+
+
+def home_view(request):
+    """Контроллер для отображения главной страницы"""
+
+    return render(request, "orders/home.html")
