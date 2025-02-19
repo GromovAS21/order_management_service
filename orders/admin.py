@@ -7,10 +7,10 @@ from orders.models import Order, Table
 class OrderAdmin(admin.ModelAdmin):
     """Админка для Заказа"""
 
-    list_display = ("id", "datetime", "table_number", "total_price", "status")
+    list_display = ("id", "order_datetime", "table_number", "total_price", "status")
     list_filter = ("status",)
     search_fields = ("id",)
-    readonly_fields = ("datetime",)
+    readonly_fields = ("order_datetime",)
 
 
 @admin.register(Table)

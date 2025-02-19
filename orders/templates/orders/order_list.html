@@ -5,6 +5,11 @@
 <div class="container">
     <div class="row text-center">
         <div class="row">
+            <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+                <h3 class="display-6">
+                    Список всех заказов
+                </h3>
+            </div>
             <p>
                 <a class="btn btn-lg btn-block btn-outline-success"
                    href="{% url 'orders:orders_create_html' %}"
@@ -38,7 +43,7 @@
                 <td><a class="btn btn-lg btn-block btn-outline-primary"
                        href="{% url 'orders:orders_detail_html' order.pk%}">
                     {{ order }}</a></td>
-                <td>{{ order.datetime }}</td>
+                <td>{{ order.order_datetime }}</td>
                 <td>{{ order.table_number }}</td>
                 <td>
                     {% for item in order.items.all %}

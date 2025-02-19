@@ -65,7 +65,7 @@ class Order(models.Model):
         verbose_name="Статус заказа",
     )
 
-    datetime = models.DateTimeField(
+    order_datetime = models.DateTimeField(
         auto_now_add=True,
         verbose_name="Время заказа",
     )
@@ -76,4 +76,4 @@ class Order(models.Model):
     class Meta:
         verbose_name = "Заказ"
         verbose_name_plural = "Заказы"
-        ordering = ("status",)
+        ordering = ("-order_datetime",)

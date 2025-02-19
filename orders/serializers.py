@@ -25,8 +25,8 @@ class OrderCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ("id", "table_number", "items", "total_price", "status", "datetime")
-        read_only_fields = ("total_price", "datetime", "status")
+        fields = ("id", "table_number", "items", "total_price", "status", "order_datetime")
+        read_only_fields = ("total_price", "order_datetime", "status")
 
 
 class OrderDetailSerializer(serializers.ModelSerializer):
@@ -37,7 +37,7 @@ class OrderDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ("id", "table_number", "items", "total_price", "status", "datetime")
+        fields = ("id", "table_number", "items", "total_price", "status", "order_datetime")
 
 
 class OrderUpdateStatusSerializer(serializers.ModelSerializer):
@@ -45,8 +45,8 @@ class OrderUpdateStatusSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ("id", "table_number", "items", "total_price", "status", "datetime")
-        read_only_fields = ("table_number", "items", "total_price", "datetime")
+        fields = ("id", "table_number", "items", "total_price", "status", "order_datetime")
+        read_only_fields = ("table_number", "items", "total_price", "order_datetime")
 
 
 class CalculationRevenueSerializer(serializers.Serializer):

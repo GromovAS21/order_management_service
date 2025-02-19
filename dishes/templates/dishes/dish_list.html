@@ -5,6 +5,11 @@
 <div class="container">
     <div class="row text-center">
         <div class="row">
+            <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h3 class="display-6">
+                Список всех блюд
+            </h3>
+        </div>
             <p>
                 <a class="btn btn-lg btn-block btn-outline-success"
                    href="{% url 'dishes:dish_create_html' %}"
@@ -35,10 +40,10 @@
                 <td>
                     <a class="btn btn-lg btn-block btn-outline-primary"
                        href="{% url 'dishes:dish_detail_html' dish.pk %}">
-                        {{ dish.name }}
+                        {{ dish.name | truncatechars:20 }}
                     </a>
                 </td>
-                <td>{{ dish.description }}</td>
+                <td>{{ dish.description | truncatechars:100 }}</td>
                 <td>{{ dish.price }}</td>
             </tr>
             {% endfor %}

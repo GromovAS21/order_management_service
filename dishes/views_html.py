@@ -4,7 +4,7 @@ from django.views.generic import CreateView, DeleteView, DetailView, ListView, U
 
 from dishes.forms import DishForm
 from dishes.models import Dish
-from order_logic.services import PaginationService, number_of_lines
+from services.display_html import PaginationService, number_of_lines
 
 
 class DishListView(LoginRequiredMixin, ListView):
