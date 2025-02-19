@@ -1,6 +1,7 @@
 import datetime
 from typing import Union
 
+from django.core.paginator import Paginator
 from django.db.models import QuerySet
 
 from orders.models import CHOICES_STATUS_ORDER, Order
@@ -35,6 +36,16 @@ class OrderService:
             return total_revenue
 
         return 0
+
+
+class PaginationService:
+    """Сервис для работы с пагинацией"""
+
+    @staticmethod
+    def paginate(queryset: QuerySet, page_size: int, page_number: int) -> Paginator:
+        paginator = Paginator(queryset, page_size)
+        page = paginator.get_page(page_number)
+        return page
 
 
 def number_of_lines(items: Union[list, QuerySet]) -> list[int]:

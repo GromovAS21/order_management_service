@@ -4,7 +4,7 @@ from django.views.generic import CreateView, DeleteView, DetailView, ListView, U
 
 from dishes.forms import DishForm
 from dishes.models import Dish
-from orders.services import number_of_lines
+from orders.services import PaginationService, number_of_lines
 
 
 class DishListView(LoginRequiredMixin, ListView):
@@ -15,7 +15,10 @@ class DishListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs) -> dict:
         context = super().get_context_data(**kwargs)
+        page_number = self.request.GET.get("page")
+        page_obj = PaginationService.paginate(self.queryset, 10, page_number)
         context["number"] = number_of_lines(context["object_list"])
+        context["page_obj"] = page_obj
         return context
 
 

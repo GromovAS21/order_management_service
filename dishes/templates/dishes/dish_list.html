@@ -17,7 +17,6 @@
                 Блюд пока нет
             </h1>
         </div>
-
         {% else %}
 
         <table style="vertical-align: middle" class="table">
@@ -27,7 +26,6 @@
                 <th scope="col">Название блюда</th>
                 <th scope="col">Описание блюда</th>
                 <th scope="col">Цена блюда (руб.)</th>
-
             </tr>
             </thead>
             <tbody>
@@ -47,9 +45,6 @@
             </tbody>
         </table>
         {% endif %}
-
-
+        {% include 'orders/includes/paginator.html' %}
     </div>
-
-
     {% endblock %}

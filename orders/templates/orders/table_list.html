@@ -26,7 +26,6 @@
                 <th scope="col">#</th>
                 <th scope="col">Номер стола</th>
                 <th scope="col">Количество мест</th>
-
             </tr>
             </thead>
             <tbody>
@@ -45,9 +44,6 @@
             </tbody>
         </table>
         {% endif %}
-
-
+        {% include 'orders/includes/paginator.html' %}
     </div>
-
-
     {% endblock %}

@@ -9,7 +9,7 @@ from django.views.generic import CreateView, DeleteView, DetailView, ListView, U
 
 from orders.forms import OrderCreateForm, OrderUpdateForm, TableForm
 from orders.models import Order, Table
-from orders.services import OrderService, number_of_lines
+from orders.services import OrderService, PaginationService, number_of_lines
 
 
 class OrderListView(LoginRequiredMixin, ListView):
@@ -22,7 +22,10 @@ class OrderListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs) -> dict:
         context = super().get_context_data(**kwargs)
+        page_number = self.request.GET.get("page")
+        page_obj = PaginationService.paginate(self.queryset, 10, page_number)
         context["number"] = number_of_lines(context["object_list"])
+        context["page_obj"] = page_obj
         return context
 
 
@@ -91,7 +94,10 @@ class TableListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs) -> dict:
         context = super().get_context_data(**kwargs)
+        page_number = self.request.GET.get("page")
+        page_obj = PaginationService.paginate(self.queryset, 10, page_number)
         context["number"] = number_of_lines(context["object_list"])
+        context["page_obj"] = page_obj
         return context
 
 

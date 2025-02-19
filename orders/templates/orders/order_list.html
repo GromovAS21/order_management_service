@@ -19,7 +19,6 @@
         </div>
         {% else %}
 
-
         <table style="vertical-align: middle" class="table">
             <thead>
             <tr>
@@ -33,11 +32,11 @@
             </tr>
             </thead>
             <tbody>
-            {% for order in object_list %}
+            {% for order in page_obj.object_list %}
             <tr>
                 <th scope="row">{{ number | get_number}}</th>
                 <td><a class="btn btn-lg btn-block btn-outline-primary"
-                                                      href="{% url 'orders:orders_detail_html' order.pk%}">
+                       href="{% url 'orders:orders_detail_html' order.pk%}">
                     {{ order }}</a></td>
                 <td>{{ order.datetime }}</td>
                 <td>{{ order.table_number }}</td>
@@ -54,9 +53,6 @@
             </tbody>
         </table>
         {% endif %}
-
-
+        {% include 'orders/includes/paginator.html' %}
     </div>
-
-
     {% endblock %}
