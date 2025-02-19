@@ -13,9 +13,7 @@ from orders.services import OrderService, PaginationService, number_of_lines
 
 
 class OrderListView(LoginRequiredMixin, ListView):
-    """
-    Контроллер для отображения всех заказов
-    """
+    """Контроллер для отображения всех заказов"""
 
     model = Order
     queryset = Order.objects.all()

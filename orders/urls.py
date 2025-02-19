@@ -1,5 +1,6 @@
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path
+from rest_framework import routers
 
 from orders.apps import OrdersConfig
 from orders.view_html import (
@@ -16,8 +17,11 @@ from orders.view_html import (
     calculation_revenue_view,
     search_view,
 )
-from orders.views_api import CalculationRevenueAPIView, OrderAPIView, OrderDetailAPIView
+from orders.views_api import CalculationRevenueAPIView, OrderAPIView, OrderDetailAPIView, TableViewSetAPIView
 
+
+router = routers.DefaultRouter()
+router.register(r"api/table", TableViewSetAPIView, basename="table")
 
 app_name = OrdersConfig.name
 
@@ -43,4 +47,4 @@ urlpatterns = [
     path("table/<int:pk>/", TableDetailView.as_view(), name="table_detail_html"),
     path("table/update/<int:pk>/", TableUpdateView.as_view(), name="table_update_html"),
     path("table/delete/<int:pk>/", TableDeleteView.as_view(), name="table_delete_html"),
-]
+] + router.urls

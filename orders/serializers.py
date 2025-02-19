@@ -7,6 +7,10 @@ from orders.models import Order, Table
 class TableSerializer(serializers.ModelSerializer):
     """Сериализатор для Стола"""
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["quantity_seat"].required = True
+
     class Meta:
         model = Table
         fields = ("id", "number", "quantity_seat")
