@@ -9,7 +9,12 @@ from rest_framework.views import APIView
 
 from orders.filters import OrderFilter
 from orders.models import Order
-from orders.serializers import OrderCreateSerializer, OrderDetailSerializer, OrderUpdateStatusSerializer
+from orders.serializers import (
+    CalculationRevenueSerializer,
+    OrderCreateSerializer,
+    OrderDetailSerializer,
+    OrderUpdateStatusSerializer,
+)
 from orders.services import OrderService
 
 
@@ -166,6 +171,18 @@ class OrderDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 class CalculationRevenueAPIView(APIView):
     """Представление для расчета выручки за смену"""
 
+    @swagger_auto_schema(
+        operation_description="Расчет выручки за смену заказов со статусом 'Оплачено'",
+        operation_summary="Выручка за смену",
+        tags=["Заказ"],
+        responses={
+            200: openapi.Response(
+                description="Успешный вывод информации о выводе",
+                schema=CalculationRevenueSerializer(),
+            ),
+            400: "Ошибка запроса",
+        },
+    )
     def get(self, request, *args, **kwargs):
         total_revenue = OrderService.calculate_revenue()
 

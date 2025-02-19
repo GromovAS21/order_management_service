@@ -14,13 +14,13 @@
                 </div>
                 <div class="card-body">
                     <p>
-                    <h5>Дата заказа</h5>
+                    <h5>Дата заказа:</h5>
                     {{ order.datetime }}
                     <p>
-                    <h5>Номер стола</h5>
+                    <h5>Номер стола:</h5>
                     {{ order.table_number }}
                     <p>
-                    <h5>Блюда</h5>
+                    <h5>Блюда:</h5>
                     {% for item in order.items.all %}
                     {{ item }} - {{ item.price }} руб.
                     <br>

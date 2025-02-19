@@ -43,3 +43,9 @@ class OrderUpdateStatusSerializer(serializers.ModelSerializer):
         model = Order
         fields = ("id", "table_number", "items", "total_price", "status", "datetime")
         read_only_fields = ("table_number", "items", "total_price", "datetime")
+
+
+class CalculationRevenueSerializer(serializers.Serializer):
+    """Сериализатор для расчета выручки"""
+
+    total_revenue = serializers.IntegerField()
