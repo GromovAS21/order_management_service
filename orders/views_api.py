@@ -199,6 +199,27 @@ class CalculationRevenueAPIView(APIView):
         return Response({"total_revenue": 0})
 
 
+class OrderFilterAPIView(APIView):
+    """Представление для фильтрации заказов по статусу"""
+
+    @swagger_auto_schema(
+        operation_description="Фильтрация заказов по статусу",
+        operation_summary="Фильтрация заказов",
+        tags=["Заказ"],
+        responses={
+            200: openapi.Response(
+                description="Успешный вывод списка заказов",
+                schema=OrderDetailSerializer(),
+            ),
+            400: "Ошибка валидации",
+        },
+    )
+    def get(self, request, *args, **kwargs):
+        orders = OrderService.filter_orders_by_status()
+        serializer = OrderDetailSerializer(orders, many=True)
+        return Response(serializer.data)
+
+
 class TableViewSetAPIView(viewsets.ModelViewSet):
     """Представление для просмотра, изменения, удаления Стола"""
 

@@ -19,7 +19,13 @@ from orders.view_html import (
     home_view,
     search_view,
 )
-from orders.views_api import CalculationRevenueAPIView, OrderAPIView, OrderDetailAPIView, TableViewSetAPIView
+from orders.views_api import (
+    CalculationRevenueAPIView,
+    OrderAPIView,
+    OrderDetailAPIView,
+    OrderFilterAPIView,
+    TableViewSetAPIView,
+)
 
 
 router = routers.DefaultRouter()
@@ -32,6 +38,7 @@ urlpatterns = [
     path("api/orders/", OrderAPIView.as_view(), name="orders_list_create"),
     path("api/orders/<int:pk>/", OrderDetailAPIView.as_view(), name="orders_detail"),
     path("api/orders/total_revenue/", CalculationRevenueAPIView.as_view(), name="total_revenue"),
+    path("api/orders/filter/", OrderFilterAPIView.as_view(), name="order_filter"),
     # HTML
     path("orders/", OrderListView.as_view(), name="orders_list_html"),
     path("orders/create/", OrderCreateView.as_view(), name="orders_create_html"),
