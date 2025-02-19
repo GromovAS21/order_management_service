@@ -9,7 +9,7 @@ from django.views.generic import CreateView, DeleteView, DetailView, ListView, U
 
 from orders.forms import OrderCreateForm, OrderUpdateForm, TableForm
 from orders.models import Order, Table
-from orders.services import OrderService
+from orders.services import OrderService, number_of_lines
 
 
 class OrderListView(LoginRequiredMixin, ListView):
@@ -22,7 +22,7 @@ class OrderListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs) -> dict:
         context = super().get_context_data(**kwargs)
-        context["number"] = OrderService.number_of_lines(context["object_list"])
+        context["number"] = number_of_lines(context["object_list"])
         return context
 
 
@@ -77,7 +77,7 @@ def search_view(request):
     query = request.GET.get("query", "")
     orders_results = Order.objects.filter(Q(status__icontains=query) | Q(table_number__number__icontains=query))
     context = {
-        "number": OrderService.number_of_lines(orders_results),
+        "number": number_of_lines(orders_results),
         "orders_results": orders_results,
     }
     return render(request, "orders/search_results.html", context)
@@ -91,7 +91,7 @@ class TableListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs) -> dict:
         context = super().get_context_data(**kwargs)
-        context["number"] = OrderService.number_of_lines(context["object_list"])
+        context["number"] = number_of_lines(context["object_list"])
         return context
 
 

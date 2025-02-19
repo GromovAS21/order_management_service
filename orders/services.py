@@ -36,10 +36,10 @@ class OrderService:
 
         return 0
 
-    @staticmethod
-    def number_of_lines(items: Union[list, QuerySet]) -> list[int]:
-        """
-        Метод для нумерации строк в списке
-        """
-        number = [number for number in range(1, len(items) + 1)]
-        return number
+
+def number_of_lines(items: Union[list, QuerySet]) -> list[int]:
+    """
+    Нумерация строк в списке
+    """
+    number = [number for number in range(1, len(items) + 1)]
+    return number
