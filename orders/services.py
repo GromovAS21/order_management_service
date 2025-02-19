@@ -1,4 +1,7 @@
 import datetime
+from typing import Union
+
+from django.db.models import QuerySet
 
 from orders.models import CHOICES_STATUS_ORDER, Order
 
@@ -32,3 +35,11 @@ class OrderService:
             return total_revenue
 
         return 0
+
+    @staticmethod
+    def number_of_lines(items: Union[list, QuerySet]) -> list[int]:
+        """
+        Метод для нумерации строк в списке
+        """
+        number = [number for number in range(1, len(items) + 1)]
+        return number

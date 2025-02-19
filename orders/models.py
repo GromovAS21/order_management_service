@@ -14,11 +14,11 @@ class CHOICES_STATUS_ORDER(models.TextChoices):
 class CHOICES_QUANTITY_SEAT(models.TextChoices):
     """Количество мест за столом"""
 
-    ONE = "one", "1 персона"
-    TWO = "two", "2 персоны"
-    THREE = "three", "3 персоны"
-    FOUR = "four", "4 персоны"
-    FIVE = "five", "5 персон"
+    ONE = "1 персона", "1 персона"
+    TWO = "2 персоны", "2 персоны"
+    THREE = "3 персоны", "3 персоны"
+    FOUR = "4 персоны", "4 персоны"
+    FIVE = "5 персон", "5 персон"
 
 
 class Table(models.Model):

@@ -7,8 +7,8 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
-from orders.forms import OrderCreateForm, OrderUpdateForm
-from orders.models import Order
+from orders.forms import OrderCreateForm, OrderUpdateForm, TableForm
+from orders.models import Order, Table
 from orders.services import OrderService
 
 
@@ -22,7 +22,7 @@ class OrderListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs) -> dict:
         context = super().get_context_data(**kwargs)
-        context["number"] = [number for number in range(1, len(context["object_list"]) + 1)]
+        context["number"] = OrderService.number_of_lines(context["object_list"])
         return context
 
 
@@ -77,7 +77,48 @@ def search_view(request):
     query = request.GET.get("query", "")
     orders_results = Order.objects.filter(Q(status__icontains=query) | Q(table_number__number__icontains=query))
     context = {
-        "number": [number for number in range(1, len(orders_results) + 1)],
+        "number": OrderService.number_of_lines(orders_results),
         "orders_results": orders_results,
     }
     return render(request, "orders/search_results.html", context)
+
+
+class TableListView(LoginRequiredMixin, ListView):
+    """Контроллер для отображения всех столов"""
+
+    model = Table
+    queryset = Table.objects.all()
+
+    def get_context_data(self, **kwargs) -> dict:
+        context = super().get_context_data(**kwargs)
+        context["number"] = OrderService.number_of_lines(context["object_list"])
+        return context
+
+
+class TableCreateView(LoginRequiredMixin, CreateView):
+    """Контроллер для создания стола"""
+
+    model = Table
+    form_class = TableForm
+    success_url = reverse_lazy("orders:table_list_html")
+
+
+class TableDetailView(LoginRequiredMixin, DetailView):
+    """Контроллер для просмотра конкретного стола"""
+
+    model = Table
+
+
+class TableUpdateView(LoginRequiredMixin, UpdateView):
+    """Контроллер для редактирования стола"""
+
+    model = Table
+    form_class = TableForm
+    success_url = reverse_lazy("orders:table_list_html")
+
+
+class TableDeleteView(LoginRequiredMixin, DeleteView):
+    """Контроллер для удаления стола"""
+
+    model = Table
+    success_url = reverse_lazy("orders:table_list_html")

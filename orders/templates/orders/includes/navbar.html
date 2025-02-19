@@ -25,7 +25,7 @@
             <nav class="ms-5">
                 <a class="p-2 btn btn-outline-dark" href="{% url 'orders:orders_list_html' %}">Список заказов</a>
                 <a class="p-2 btn btn-outline-dark" href="">Список блюд</a>
-                <a class="p-2 btn btn-outline-dark" href="">Список столов</a>
+                <a class="p-2 btn btn-outline-dark" href="{% url 'orders:table_list_html' %}">Список столов</a>
                 <a class="p-2 btn btn-outline-warning" href="{% url 'orders:orders_revenue_html' %}">Расчет выручки</a>
                 <form action="{% url 'orders:logout' %}" method="post" style="display: inline-block;">
                     {% csrf_token %}
