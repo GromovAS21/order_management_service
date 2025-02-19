@@ -1,5 +1,7 @@
 import datetime
 
+from django.db.models import QuerySet
+
 from orders.models import CHOICES_STATUS_ORDER, Order
 
 
@@ -27,3 +29,10 @@ class OrderService:
             return total_revenue
 
         return 0
+
+    @staticmethod
+    def filter_orders_by_status() -> QuerySet:
+        """
+        Метод для фильтрации заказов по статусу
+        """
+        return Order.objects.filter().order_by("status")

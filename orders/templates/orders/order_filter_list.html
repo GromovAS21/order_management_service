@@ -10,7 +10,9 @@
                     Список всех заказов
                 </h3>
             </div>
-            <div class="col-4"></div>
+            <div class="col-4">
+
+            </div>
             <div class="col-4">
                 <p>
                     <a class="btn btn-lg btn-block btn-outline-success"
@@ -20,8 +22,8 @@
             <div class="col-4">
                 <p>
                     <a class="btn btn-lg btn-block btn-outline-secondary" style="float: right"
-                       href=" {% url 'orders:orders_filter_list_html' %}"
-                       role="button">Фильтр по статусу</a>
+                       href=" {% url 'orders:orders_list_html' %}"
+                       role="button">Фильтр по дате</a>
             </div>
         </div>
         {% if not object_list %}
@@ -45,7 +47,7 @@
             </tr>
             </thead>
             <tbody>
-            {% for order in page_obj.object_list %}
+            {% for order in object_list %}
             <tr>
                 <th scope="row">{{ number | get_number}}</th>
                 <td><a class="btn btn-lg btn-block btn-outline-primary"

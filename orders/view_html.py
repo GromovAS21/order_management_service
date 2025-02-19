@@ -85,6 +85,17 @@ def search_view(request):
     return render(request, "orders/search_results.html", context)
 
 
+@login_required
+def filter_order_list_view(request):
+    """Контроллер для отображения списка отфильтрованных заказов"""
+
+    orders = OrderService.filter_orders_by_status()
+    page_number = request.GET.get("page")
+    page_obj = PaginationService.paginate(orders, 10, page_number)
+    context = {"number": number_of_lines(orders), "object_list": page_obj}
+    return render(request, "orders/order_filter_list.html", context)
+
+
 class TableListView(LoginRequiredMixin, ListView):
     """Контроллер для отображения всех столов"""
 
@@ -131,5 +142,4 @@ class TableDeleteView(LoginRequiredMixin, DeleteView):
 
 def home_view(request):
     """Контроллер для отображения главной страницы"""
-
     return render(request, "orders/home.html")

@@ -15,6 +15,7 @@ from orders.view_html import (
     TableListView,
     TableUpdateView,
     calculation_revenue_view,
+    filter_order_list_view,
     home_view,
     search_view,
 )
@@ -39,6 +40,7 @@ urlpatterns = [
     path("orders/delete/<int:pk>/", OrderDeleteView.as_view(), name="orders_delete_html"),
     path("orders/revenue/", calculation_revenue_view, name="orders_revenue_html"),
     path("orders/search/", search_view, name="orders_search_html"),
+    path("orders/filter/", filter_order_list_view, name="orders_filter_list_html"),
     # Авторизация
     path("login/", LoginView.as_view(template_name="orders/login.html"), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
