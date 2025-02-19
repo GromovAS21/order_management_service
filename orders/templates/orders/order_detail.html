@@ -1,0 +1,42 @@
+{% extends 'orders/base.html' %}
+{% block content %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-6">{{order}}</h1>
+</div>
+
+<div class="container">
+    <div class="row text-center">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h2 class="my-0 font-weight-normal">{{ order.status }}</h2>
+                </div>
+                <div class="card-body">
+                    <p>
+                    <h5>Дата заказа:</h5>
+                    {{ order.order_datetime }}
+                    <p>
+                    <h5>Номер стола:</h5>
+                    {{ order.table_number }}
+                    <p>
+                    <h5>Блюда:</h5>
+                    {% for item in order.items.all %}
+                    {{ item }} - {{ item.price }} руб.
+                    <br>
+                    {% endfor %}
+                    </p>
+                    <a class="btn btn-primary" href="{% url 'orders:orders_update_html' order.pk %}" role="button">Изменить
+                        статус заказа</a>
+                    <a class="btn btn-danger" href="{% url 'orders:orders_delete_html' order.pk %}" role="button">Удалить заказ</a>
+                    <br>
+                    <br>
+                    <a class="btn btn-outline-primary" href="{% url 'orders:orders_list_html' %}"
+                       role="button">Назад</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% endblock %}

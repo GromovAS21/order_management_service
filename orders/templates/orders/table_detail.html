@@ -1,0 +1,30 @@
+{% extends 'orders/base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row text-center">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h2 class="my-0 font-weight-normal">Стол {{ table }}</h2>
+                </div>
+                <div class="card-body">
+                    <p>
+                    <h5>Количество мест:</h5>
+                    {{ table.quantity_seat }}
+                    </p>
+                    <a class="btn btn-primary" href="{% url 'orders:table_update_html' table.pk %}" role="button">Изменить
+                        </a>
+                    <a class="btn btn-danger" href="{% url 'orders:table_delete_html' table.pk %}" role="button">Удалить</a>
+                    <br>
+                    <br>
+                    <a class="btn btn-outline-primary" href="{% url 'orders:table_list_html' %}"
+                       role="button">Назад</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% endblock %}

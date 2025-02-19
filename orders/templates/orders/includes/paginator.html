@@ -1,0 +1,17 @@
+    <div class="pagination" style="display: flex; justify-content: center;">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a class="btn btn-outline-secondary" href="?page=1">&laquo; </a>
+                    <a class="btn btn-outline-secondary" href="?page={{ page_obj.previous_page_number }}">пред.</a>
+                {% endif %}
+
+                <span class="current">
+                    {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a class="btn btn-outline-secondary" href="?page={{ page_obj.next_page_number }}">след.</a>
+                    <a class="btn btn-outline-secondary" href="?page={{ page_obj.paginator.num_pages }}"> &raquo;</a>
+                {% endif %}
+            </span>
+    </div>

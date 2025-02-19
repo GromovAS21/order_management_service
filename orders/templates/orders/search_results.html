@@ -1,0 +1,67 @@
+{% extends 'orders/base.html' %}
+{% load my_tags1 %}
+{% block content %}
+
+<div class="container">
+    <div class="row text-center">
+
+        <div class="row">
+            <div class="row">
+                <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+                    <h3 class="display-6">
+                        Результаты поиска
+                    </h3>
+                </div>
+                <p>
+                    <a class="btn btn-lg btn-block btn-outline-primary"
+                       href="{% url 'orders:orders_list_html' %}"
+                       role="button">К списку всех заказов</a>
+                </p>
+            </div>
+            {% if not orders_results %}
+            <div class="col-12">
+                <h1 class="text-body-secondary">
+                    Заказы не найдены
+                </h1>
+            </div>
+            {% else %}
+            <table style="vertical-align: middle" class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Номер заказа</th>
+                    <th scope="col">Дата заказа</th>
+                    <th scope="col">Номер стола</th>
+                    <th scope="col">Позиции в заказе</th>
+                    <th scope="col">Сумма заказа (руб.)</th>
+                    <th scope="col">Статус заказа</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for order in orders_results %}
+                <tr>
+                    <th scope="row">{{ number | get_number}}</th>
+                    <td><a class="btn btn-lg btn-block btn-outline-primary"
+                           href="{% url 'orders:orders_detail_html' order.pk%}">
+                        {{ order }}</a></td>
+                    <td>{{ order.order_datetime }}</td>
+                    <td>{{ order.table_number }}</td>
+                    <td>
+                        {% for item in order.items.all %}
+                        {{ item }} - {{item.price}} руб.
+                        <br>
+                        {% endfor %}
+                    </td>
+                    <td>{{ order.total_price }}</td>
+                    <td>{{ order.status }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+
+
+        </div>
+
+
+        {% endblock %}
