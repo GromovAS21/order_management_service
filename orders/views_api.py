@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from rest_framework.serializers import Serializer
 from rest_framework.views import APIView
 
+from order_logic.services import OrderService
 from orders.filters import OrderFilter
 from orders.models import Order, Table
 from orders.serializers import (
@@ -16,7 +17,6 @@ from orders.serializers import (
     OrderUpdateStatusSerializer,
     TableSerializer,
 )
-from orders.services import OrderService
 
 
 def manual_parameters_id(item: str) -> list[openapi.Parameter]:

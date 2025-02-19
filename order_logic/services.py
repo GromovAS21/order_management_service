@@ -14,9 +14,6 @@ class OrderService:
     def calculate_total_price(order: Order) -> float:
         """
         Метод для подсчета общей стоимости заказа
-
-        :param: Заказ
-        :return: Общая стоимость заказа
         """
         total_price = sum(item.price for item in order.items.all())
         return total_price
@@ -25,8 +22,6 @@ class OrderService:
     def calculate_revenue() -> float:
         """
         Метод для подсчета выручки за смену
-
-        :return: Общая выручка за смену
         """
         today = datetime.date.today()
         orders_paid = Order.objects.filter(status=CHOICES_STATUS_ORDER.PAID, datetime__date=today)

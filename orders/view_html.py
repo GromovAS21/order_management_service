@@ -7,9 +7,9 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
+from order_logic.services import OrderService, PaginationService, number_of_lines
 from orders.forms import OrderCreateForm, OrderUpdateForm, TableForm
 from orders.models import Order, Table
-from orders.services import OrderService, PaginationService, number_of_lines
 
 
 class OrderListView(LoginRequiredMixin, ListView):
