@@ -147,6 +147,7 @@ class LoginCustomView(LoginView):
     form_class = AuthenticationCustomForm
 
 
+@login_required
 def home_view(request):
     """Контроллер для отображения главной страницы"""
     return render(request, "orders/home.html")
