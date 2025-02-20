@@ -1,10 +1,10 @@
-from django.contrib.auth.models import User
 from django.test import TestCase
 from rest_framework import status
 from rest_framework.reverse import reverse
 from rest_framework.test import APIClient
 
 from orders.models import CHOICES_QUANTITY_SEAT, Table
+from orders.tests.fixtures import create_test_table, create_test_user
 
 
 class TableTest(TestCase):
@@ -13,8 +13,8 @@ class TableTest(TestCase):
     def setUp(self):
 
         self.client = APIClient()
-        self.user = User.objects.create_user(username="testuser", password="testpassword")
-        self.table = Table.objects.create(number=2, quantity_seat=CHOICES_QUANTITY_SEAT.ONE)
+        self.user = create_test_user()
+        self.table = create_test_table()
 
     def test_table(self):
         """Тесты для объекта стола"""

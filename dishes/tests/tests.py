@@ -5,6 +5,8 @@ from rest_framework.reverse import reverse
 from rest_framework.test import APIClient
 
 from dishes.models import Dish
+from dishes.tests.fixtures import create_test_dish
+from orders.tests.fixtures import create_test_user
 
 
 class DishTest(TestCase):
@@ -13,12 +15,11 @@ class DishTest(TestCase):
     def setUp(self):
 
         self.client = APIClient()
-        self.user = User.objects.create_user(username="usertest", password="testpassword")
-        self.dish = Dish.objects.create(name="testdish", description="testtext", price=100)
+        self.user = create_test_user()
+        self.dish = create_test_dish()
 
     def test_dish(self):
         """Тесты для объекта блюда"""
-        print("asdasdasd", self.dish)
         self.assertEqual(self.dish.name, "testdish")
         self.assertEqual(self.dish.description, "testtext")
         self.assertEqual(self.dish.price, 100)
