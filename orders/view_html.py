@@ -2,13 +2,14 @@ import datetime
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 from django.db.models import Q
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
 from logics.order_logics import OrderService
-from orders.forms import OrderCreateForm, OrderUpdateForm, TableForm
+from orders.forms import AuthenticationCustomForm, OrderCreateForm, OrderUpdateForm, TableForm
 from orders.models import Order, Table
 from services.display_html import PaginationService, number_of_lines
 
@@ -140,6 +141,13 @@ class TableDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("orders:table_list_html")
 
 
+class LoginCustomView(LoginView):
+    """Контроллер для отображения страницы входа"""
+
+    form_class = AuthenticationCustomForm
+
+
+@login_required
 def home_view(request):
     """Контроллер для отображения главной страницы"""
     return render(request, "orders/home.html")
