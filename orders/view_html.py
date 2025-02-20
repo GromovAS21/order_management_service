@@ -150,4 +150,4 @@ class LoginCustomView(LoginView):
 @login_required
 def home_view(request):
     """Контроллер для отображения главной страницы"""
-    return render(request, "orders/home.html")
+    return render(request, "orders/index.html")
