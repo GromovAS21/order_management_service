@@ -29,7 +29,7 @@ from orders.views_api import (
 
 
 router = routers.DefaultRouter()
-router.register(r"api/table", TableViewSetAPIView, basename="table")
+router.register(r"api/tables", TableViewSetAPIView, basename="table")
 
 app_name = OrdersConfig.name
 
