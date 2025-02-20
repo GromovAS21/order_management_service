@@ -1,3 +1,4 @@
+from django.contrib.auth.forms import AuthenticationForm
 from django.forms import ModelForm
 
 from orders.models import Order, Table
@@ -36,3 +37,9 @@ class TableForm(StyleFormMixin, ModelForm):
     class Meta:
         model = Table
         fields = ("number", "quantity_seat")
+
+
+class AuthenticationCustomForm(StyleFormMixin, AuthenticationForm):
+    """Форма для авторизации"""
+
+    pass

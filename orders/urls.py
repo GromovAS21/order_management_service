@@ -1,9 +1,10 @@
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LogoutView
 from django.urls import path
 from rest_framework import routers
 
 from orders.apps import OrdersConfig
 from orders.view_html import (
+    LoginCustomView,
     OrderCreateView,
     OrderDeleteView,
     OrderDetailView,
@@ -49,7 +50,7 @@ urlpatterns = [
     path("orders/search/", search_view, name="orders_search_html"),
     path("orders/filter/", filter_order_list_view, name="orders_filter_list_html"),
     # Авторизация
-    path("login/", LoginView.as_view(template_name="orders/login.html"), name="login"),
+    path("login/", LoginCustomView.as_view(template_name="orders/login.html"), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
     # Столы
     path("table/", TableListView.as_view(), name="table_list_html"),
